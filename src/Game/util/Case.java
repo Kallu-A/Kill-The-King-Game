@@ -121,7 +121,9 @@ public class Case extends JLabel {
                     objectCase.list.remove(ennemy);
                     if (!PnjKing.kingAlive && PnjKing.deadKingMessage) {
                         PnjKing.deadKingMessage = false;
-                        JOptionPane.showMessageDialog(this, "well done you killed the king", "YOU WON", JOptionPane.INFORMATION_MESSAGE);
+                        if (! WindowInitializer.hasCheat)
+                            JOptionPane.showMessageDialog(this, "well done you killed the king", "YOU WON", JOptionPane.INFORMATION_MESSAGE);
+                        else JOptionPane.showMessageDialog(this, "well done you killed the king but you cheat so it's not a win", "CHEATER", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }

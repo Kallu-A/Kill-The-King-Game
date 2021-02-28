@@ -26,6 +26,8 @@ import java.util.LinkedList;
  * @author kallu */
 public class WindowInitializer extends JFrame {
 
+    public static  boolean hasCheat = false;
+
     protected static final int BOARD_DIM = 20;
     protected JPanel contentPane;
     protected Case[][] board;
@@ -44,7 +46,8 @@ public class WindowInitializer extends JFrame {
     private final ImageIcon shieldIcon = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/armor.png"));
     private final ImageIcon wallIcon = new javax.swing.ImageIcon(this.getClass().getResource("util/montain.png"));
     private final ImageIcon pnjIcon = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/shop.png"));
-    
+    private final ImageIcon playerAlive = new javax.swing.ImageIcon(this.getClass().getResource("util/Player/warrior.png"));
+
     private final ImageIcon soldier = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/ennemy/soldier.png"));
     private final ImageIcon knight = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/ennemy/knight.png"));
     private final ImageIcon gorila = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/ennemy/gorila.png"));
@@ -67,7 +70,6 @@ public class WindowInitializer extends JFrame {
         initGrid();
         initUi();
         initToolBar();
-
 
         grid.setFocusable(true);
         grid.requestFocus();
@@ -193,6 +195,13 @@ public class WindowInitializer extends JFrame {
     private void keyAction(KeyEvent e){
         if (Health.life == 0){
             getCaseFromCoord(player.getCoord()).setIcon(deathPlayer);
+            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                Health.life = 10;
+                Health.stillAlive = true;
+                hasCheat = true;
+                getCaseFromCoord(player.getCoord()).setIcon(playerAlive);
+                setInfoGame();
+            }
             return;
         }
         switch (e.getKeyCode()){
@@ -261,7 +270,8 @@ public class WindowInitializer extends JFrame {
                 "A: open the store next door \n" +
                 "E: open the inventory and allows you to change the current weapon \n" +
                 "Z: scan the surrounding enemies\n" +
-                "R: show commands","Commands", JOptionPane.INFORMATION_MESSAGE);
+                "R: show commands\n" +
+                "SPACE : if you're dead you still can cheat and revive","Commands", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /** get the btnObject from coord */

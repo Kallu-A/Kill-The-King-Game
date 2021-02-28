@@ -14,3 +14,4 @@ A little game of mine
 - **E: open the inventory and you can change the current item**
 - **Z: scan the nearby enemy 1 case all around you**
 - **R: show all the commands of the game in the game**
+- **SPACE : revive you if you're dead but it's a cheat** 
