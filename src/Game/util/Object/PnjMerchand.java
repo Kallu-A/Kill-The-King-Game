@@ -2,6 +2,7 @@ package Game.util.Object;
 
 import Game.WindowInitializer;
 import Game.util.Object.buy.ObjectBuy;
+import Game.util.Object.item.Item;
 import Game.util.ObjectCase;
 import Game.util.Player.Player;
 
@@ -37,6 +38,30 @@ public class PnjMerchand extends Object {
         if (selection != null) getUseItem(selection.toString(), player, window);
     }
 
+    /** get all the item to sell to the pnj*/
+    public void getItemToBuy(Player player, WindowInitializer window){
+        if (player.inventory.list.size() == 1) {
+            JOptionPane.showMessageDialog(window,"you have nothing to sell");
+            return;
+        }
+
+        java.lang.Object[] selectionValue = new java.lang.Object[player.inventory.list.size() - 1];
+        int i = -1;
+        for (Object object : player.inventory.list){
+            if ( i != -1 ){
+                selectionValue[i] = object.toString();
+            }
+            i++;
+        }
+
+        String initialSelec = inventory.list.get(1).toString();
+        java.lang.Object selection = JOptionPane.showInputDialog(window, "What do you want to sell ?", "Shop",
+                JOptionPane.QUESTION_MESSAGE, null, selectionValue, initialSelec);
+
+        if (selection != null) sellItem(selection.toString(), player, window);
+
+    }
+
     /** add a item to sell */
     public void addItemToSell(Object objectAdd){
         inventory.list.add(objectAdd);
@@ -54,10 +79,33 @@ public class PnjMerchand extends Object {
         inventory.list.remove(object);
     }
 
+    /** sell an item */
+    private void sellItem(String selection, Player player, WindowInitializer window){
+        Item item =  (Item) player.inventory.list.get(getIndexInventory(player, selection));
+        if (item.price == 0) {
+            JOptionPane.showMessageDialog(window, "Sorry you can't sell an item of value 0 coins");
+            return;
+        }
+        player.setMoney(item.price);
+        player.current = (Item) player.inventory.list.get(0);
+        player.inventory.list.remove(item);
+    }
+
     /** transform a string in a index of the shopping inventory*/
     private int getIndexInventory(String selection){
         int i = 0;
         for (Object object : inventory.list){
+            if (object.toString().equals(selection)) return i;
+            i++;
+        }
+        return 0;
+    }
+
+
+    /** transform a string in a index of the selling inventory*/
+    private int getIndexInventory(Player player, String selection){
+        int i = 0;
+        for (Object object : player.inventory.list){
             if (object.toString().equals(selection)) return i;
             i++;
         }

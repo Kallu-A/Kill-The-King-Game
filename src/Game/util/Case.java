@@ -98,11 +98,14 @@ public class Case extends JLabel {
 
 
     /** get the pnj and interact with him*/
-    public boolean interactWithPnj(Player player, WindowInitializer window){
+    public boolean interactWithPnj(Player player, WindowInitializer window, boolean buy){
         boolean interact = false;
         for (Object object: objectCase.list){
             if (object instanceof PnjMerchand) {
-                ((PnjMerchand) object).getItemToSell(player, window);
+                if (buy)
+                    ((PnjMerchand) object).getItemToSell(player, window);
+                else
+                    ((PnjMerchand) object).getItemToBuy(player, window);
                 interact = true;
             }
         }

@@ -19,7 +19,7 @@ public class Player {
     public final ImageIcon iconPlayer;
     public final ImageIcon ground;
     private int money;
-    private final ObjectCase inventory;
+    public final ObjectCase inventory;
     public Item current;
 
     public Player(WindowInitializer board, Coord coord) {
@@ -136,5 +136,6 @@ public class Player {
 
     public void addItemInventory(Object object){
         inventory.list.add(object);
+        current = (Item) object;
     }
 }

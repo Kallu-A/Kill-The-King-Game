@@ -91,7 +91,6 @@ public class WindowInitializer extends JFrame {
                 "\n Objective to kill the king" +
                 "\n---------------------------------------------------" +
                 "\n [Tips] Don't fight with you'r hand " +
-                "\n [Tips] When you buy a new weapon think about equipping it" +
                 "\n [Tips] Remember to scan your enemy before facing it " +
                 "\n [Tips] Don't underestimate the armor " +
                 "\n [Tips] Going to a space for the first time earns you coins","Start", JOptionPane.INFORMATION_MESSAGE);
@@ -243,7 +242,12 @@ public class WindowInitializer extends JFrame {
                 break;
 
             case KeyEvent.VK_A:
-                interactWithPnj();
+                interactWithPnj(true);
+                setInfoGame();
+                break;
+
+            case KeyEvent.VK_Q:
+                interactWithPnj(false);
                 setInfoGame();
                 break;
 
@@ -267,7 +271,8 @@ public class WindowInitializer extends JFrame {
     /** show all the commands*/
     public void showCommand(){
         JOptionPane.showMessageDialog(this, "Arrows: to move \n" +
-                "A: open the store next door \n" +
+                "A: open the store next door for buying \n" +
+                "Q: open the store next door  for selling \n" +
                 "E: open the inventory and allows you to change the current weapon \n" +
                 "Z: scan the surrounding enemies\n" +
                 "R: show commands\n" +
@@ -321,6 +326,10 @@ public class WindowInitializer extends JFrame {
         putPnj(new Coord(10, 17), new PnjKing(), king);
         putPnj(new Coord(10, 16), new PnjDragon(), dragon);
         putPnj(new Coord(10, 18), new PnjDragon(), dragon);
+
+        board[8][7].setObjectCase(new Shield());
+        board[8][7].setIcon(shieldIcon);
+        shield++;
 
         for (int i=0; i<BOARD_DIM; i++){
             for (int j=0; j<BOARD_DIM; j++){
@@ -448,12 +457,12 @@ public class WindowInitializer extends JFrame {
     }
 
     /** function who interact with the adjacent coord of the player*/
-    private void interactWithPnj() {
+    private void interactWithPnj(boolean buy) {
         boolean interact = false;
         LinkedList<Coord> coordAdj = Coord.getCoordAdjacent(player.getCoord());
         for (Coord value : coordAdj)
-            if (getCaseFromCoord(value).interactWithPnj(player, this)) interact = true;
-        setAccountMoneyText();
+            if (getCaseFromCoord(value).interactWithPnj(player, this, buy)) interact = true;
+        setInfoGame();
 
         if (!interact) JOptionPane.showMessageDialog(this, "there is no store nearby", "no store", JOptionPane.INFORMATION_MESSAGE);
     }

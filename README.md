@@ -10,7 +10,8 @@ A little game of mine
 - The life and damage of the enemy is exponential don't try to kill a Gorila or a Dragon with the basic sword
 - Warning when you buy a weapon she is not the current item but you can change it with **E**
 ## All the commands :
-- **A: open the store if there is shop in the nearby 1 case all around you**
+- **A: open the store if there is shop in the nearby 1 case all around you for buying**
+- **Q: open the store if there is shop in the nearby 1 case all around you for selling you'r item**
 - **E: open the inventory and you can change the current item**
 - **Z: scan the nearby enemy 1 case all around you**
 - **R: show all the commands of the game in the game**
