@@ -414,12 +414,13 @@ public class WindowInitializer extends JFrame {
         pnj2.addItemToSell(new ShieldBuy());
         pnj2.addItemToSell(new ShieldBuy());
         pnj2.addItemToSell(new ShieldBuy());
+        pnj2.addItemToSell(new Potion(10));
+        pnj2.addItemToSell(new Potion(10));
+        pnj2.addItemToSell(new Potion(10));
+        pnj2.addItemToSell(new Potion(10));
+        pnj2.addItemToSell(new Potion(10));
         pnj2.addItemToSell(new Potion(20));
-        pnj2.addItemToSell(new Potion(10));
-        pnj2.addItemToSell(new Potion(10));
-        pnj2.addItemToSell(new Potion(10));
-        pnj2.addItemToSell(new Potion(10));
-        pnj2.addItemToSell(new Potion(10));
+        pnj2.addItemToSell(new Potion(20));
         pnj2.addItemToSell(new Potion(30));
         pnj2.addItemToSell(new Potion(30));
         pnj2.addItemToSell(new Potion(30));

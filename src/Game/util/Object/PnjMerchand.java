@@ -55,7 +55,8 @@ public class PnjMerchand extends Object {
         }
 
         String initialSelec = inventory.list.get(1).toString();
-        java.lang.Object selection = JOptionPane.showInputDialog(window, "What do you want to sell ?", "Shop",
+        java.lang.Object selection = JOptionPane.showInputDialog(window, "What do you want to sell ? \n" +
+                        "Be careful you only sell it for 1/4 of its price", "Shop",
                 JOptionPane.QUESTION_MESSAGE, null, selectionValue, initialSelec);
 
         if (selection != null) sellItem(selection.toString(), player, window);
@@ -86,8 +87,9 @@ public class PnjMerchand extends Object {
             JOptionPane.showMessageDialog(window, "Sorry you can't sell an item of value 0 coins");
             return;
         }
-        player.setMoney(item.price);
-        player.current = (Item) player.inventory.list.get(0);
+        player.setMoney(item.price/4);
+        if ( player.current.equals(item))
+            player.current = (Item) player.inventory.list.get(0);
         player.inventory.list.remove(item);
     }
 
