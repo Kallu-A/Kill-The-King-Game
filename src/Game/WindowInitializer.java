@@ -124,7 +124,7 @@ public class WindowInitializer extends JFrame {
                 hasCheat = true;
                 getCaseFromCoord(player.getCoord()).setIcon(playerAlive);
                 setInfoGame();
-            }
+            } else if ( e.getKeyCode() == KeyEvent.VK_ESCAPE) relance();
             return;
         }
         switch (e.getKeyCode()){
