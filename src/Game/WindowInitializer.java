@@ -85,6 +85,7 @@ public class WindowInitializer extends JFrame {
         JOptionPane.showMessageDialog(this, "Press R for the commands " +
                 "\n To fight an enemy you have to go on his postion " +
                 "\n Objective to kill the king" +
+                "\n ESCAPE for relaunch a new game" +
                 "\n---------------------------------------------------" +
                 "\n [Tips] Don't fight with your hand " +
                 "\n [Tips] Remember to scan your enemy before facing it " +
@@ -277,7 +278,8 @@ public class WindowInitializer extends JFrame {
                 "E: open the inventory and allows you to change the current weapon \n" +
                 "Z: scan the surrounding enemies\n" +
                 "R: show commands\n" +
-                "SPACE : if you're dead you still can cheat and revive","Commands", JOptionPane.INFORMATION_MESSAGE);
+                "SPACE : if you're dead you still can cheat and revive \n" +
+                "ESCAPE: relaunch a new game","Commands", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /** get the btnObject from coord */
