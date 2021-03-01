@@ -4,9 +4,8 @@ import Game.WindowInitializer;
 import Game.util.D2Dim.Coord;
 import Game.util.Object.*;
 import Game.util.Object.Object;
-import Game.util.Object.ennemy.PnjEnnemy;
-import Game.util.Object.ennemy.PnjKing;
-import Game.util.Player.Health;
+import Game.util.Object.enemy.PnjEnnemy;
+import Game.util.Object.enemy.PnjKing;
 import Game.util.Player.Player;
 
 
@@ -43,10 +42,10 @@ public class Case extends JLabel {
     }
 
     /** get the shield on the case and remove it*/
-    public void getShield(){
+    public void getShield(Player player){
         for (Object object: objectCase.list){
             if (object instanceof Shield) {
-                Health.setNewShieldLevelIncrement();
+                player.health.setNewShieldLevelIncrement();
                 removeObject(object);
             }
         }
@@ -112,8 +111,9 @@ public class Case extends JLabel {
         return interact;
     }
 
-    /** get the ennemy and interact with him*/
-    public void interactWithEnnemy(Player player){
+    /** get the enemy and interact with him*/
+    public void interactWithEnnemy(WindowInitializer window){
+        Player player = window.getPlayer();
         for (Object object: objectCase.list){
             if (object instanceof PnjEnnemy) {
                 PnjEnnemy ennemy = ((PnjEnnemy) object);
@@ -124,7 +124,7 @@ public class Case extends JLabel {
                     objectCase.list.remove(ennemy);
                     if (!PnjKing.kingAlive && PnjKing.deadKingMessage) {
                         PnjKing.deadKingMessage = false;
-                        if (! WindowInitializer.hasCheat)
+                        if (! window.hasCheat)
                             JOptionPane.showMessageDialog(this, "well done you killed the king", "YOU WON", JOptionPane.INFORMATION_MESSAGE);
                         else JOptionPane.showMessageDialog(this, "well done you killed the king but you cheat so it's not a win", "CHEATER", JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -159,8 +159,13 @@ public class Case extends JLabel {
         this.setIcon(wallIcon);
     }
 
+    /**put a shield on the case*/
+    public void putShield(ImageIcon shieldIcon){
+        setObjectCase(new Shield());
+        setIcon(shieldIcon);
+    }
 
-
+    /** return if it's a wall*/
     public boolean isWall() {
         return wall;
     }

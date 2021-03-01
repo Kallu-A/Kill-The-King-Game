@@ -21,8 +21,10 @@ public class Player {
     private int money;
     public final ObjectCase inventory;
     public Item current;
+    public Health health;
 
     public Player(WindowInitializer board, Coord coord) {
+        health = new Health();
         this.coord = coord;
         this.board = board;
         this.money = 0;
@@ -39,7 +41,7 @@ public class Player {
     /** try if the coord is valid or not and do the change*/
     public void setCoord(Coord coord) {
         if (!WindowInitializer.isBoard(coord) || board.getCaseFromCoord(coord).isWall()) return;
-        LinkedList<Coord> coordAdj = Coord.getCoordAdjacent(this.coord);
+        LinkedList<Coord> coordAdj = this.coord.getCoordAdjacent();
         for (Coord value : coordAdj) {
             if (value.isCoordEqual(coord) && !value.isCoordEqual(this.coord)) {
                 setPlayerPosition(new Move(value, this.coord));
@@ -85,7 +87,7 @@ public class Player {
     public void set(Coord coord){
         setMoney(board.getCaseFromCoord(coord).getCoin() );
         setMine(board.getCaseFromCoord(coord).getBomb(true));
-        board.getCaseFromCoord(coord).getShield();
+        board.getCaseFromCoord(coord).getShield(this);
     }
 
     /** set the money*/
@@ -94,7 +96,7 @@ public class Player {
     }
 
     public void setMine(int value){
-        Health.setLife(value);
+        health.setLife(value);
         board.setInfoGame();
     }
 

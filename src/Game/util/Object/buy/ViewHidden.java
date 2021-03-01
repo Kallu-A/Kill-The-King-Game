@@ -7,9 +7,9 @@ public class ViewHidden extends ObjectBuy{
 
     private final WindowInitializer window;
 
-    public ViewHidden(WindowInitializer window) {
+    public ViewHidden(WindowInitializer mustBeThis) {
         super(300);
-        this.window = window;
+        this.window = mustBeThis;
     }
 
     @Override

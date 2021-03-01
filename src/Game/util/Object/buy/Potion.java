@@ -1,6 +1,5 @@
 package Game.util.Object.buy;
 
-import Game.util.Player.Health;
 import Game.util.Player.Player;
 
 public class Potion extends ObjectBuy {
@@ -21,6 +20,6 @@ public class Potion extends ObjectBuy {
 
     @Override
     public void use(Player player) {
-        Health.setLife(value);
+        player.health.setLife(value);
     }
 }

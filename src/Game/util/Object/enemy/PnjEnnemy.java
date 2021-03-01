@@ -1,4 +1,4 @@
-package Game.util.Object.ennemy;
+package Game.util.Object.enemy;
 
 import Game.util.Object.Object;
 import Game.util.Object.item.Item;
@@ -23,7 +23,7 @@ public class PnjEnnemy extends Object {
 
     /** set the fight with the player */
     public void fight(Player player){
-        Health.setLife(-weapon.getAttack());
+        player.health.setLife(-weapon.getAttack());
         this.life -= player.current.getAttack();
         if (life <= 0 ) {
             stillAlive = false;

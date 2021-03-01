@@ -3,25 +3,30 @@ package Game.util.Player;
 /** the health of the player*/
 public class Health {
 
-    private static double shield = 1.0;
-    public static int levelShield = 0;
-    public static int life = 100;
+    private double shield;
+    public int levelShield;
+    public int life;
 
     public static final int MAXIMUN_LIFE = 100;
     public static final int MINIMUN_LIFE = 0;
     
-    public static boolean stillAlive = true;
+    public boolean stillAlive = true;
 
+    public Health() {
+        this.shield = 1.0;
+        this.levelShield = 0;
+        this.life = 100;
+    }
 
     /** add to the life the current change*/
-    public static void setLife(int change){
+    public void setLife(int change){
         if (!stillAlive) return;
         normLife(change);
         if (life == 0) stillAlive = false;
     }
 
     /** norm life for 0<= life <= 100*/
-    private static void normLife(int change){
+    private void normLife(int change){
         if ( life + change > MAXIMUN_LIFE) life = 100;
         else if ( life + change * shield < MINIMUN_LIFE) life = 0;
         else {
@@ -30,15 +35,15 @@ public class Health {
         }
     }
 
-    /** incremente the shield*/
-    public static void setNewShieldLevelIncrement(){
+    /** i++ the shield*/
+    public void setNewShieldLevelIncrement(){
         if (levelShield > 9) return;
         levelShield++;
         setShield();
     }
 
     /** adapt the shield in function of levelShield*/
-    private static void setShield(){
+    private void setShield(){
         shield = 1 - ( (double) levelShield/10);
     }
 

@@ -3,7 +3,7 @@ package Game.util.Object.item;
 public class KingSword extends Item{
 
     public KingSword() {
-        super(220, 2500);
+        super(220, 5000);
     }
 
     @Override

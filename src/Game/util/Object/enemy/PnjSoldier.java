@@ -1,4 +1,4 @@
-package Game.util.Object.ennemy;
+package Game.util.Object.enemy;
 
 import Game.util.Object.item.SwordPnj;
 

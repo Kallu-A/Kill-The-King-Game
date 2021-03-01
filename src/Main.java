@@ -1,10 +1,11 @@
-import Game.WindowInitializer;
+import Game.DefaultMap;
+import Game.MapSelector;
 
 /** For launch
  * @author kallu */
 public class Main {
 
     public static void main(String[] args) {
-        WindowInitializer window = new WindowInitializer();
+        new MapSelector();
     }
 }
