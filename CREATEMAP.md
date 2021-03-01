@@ -50,4 +50,7 @@
 I advise you to use the same for all the same type of enemy
 - if you want random enemy you have the methods ```putEnemyRandom(int maxShield)``` who in all the board put enemy randomly
 - **warning** for put a shield you have to do : ```board[x][y].putShield(shieldIcon);```
-I hope you like this program if you have advice for upgrade it or make the create map easier tell me 
+I hope you like this program if you have advice for upgrade it or make the create map easier tell me
+  
+
+*if you create a good map send me and I put it in the code*
