@@ -21,7 +21,7 @@
   #### Change the dim of the map
   - **You can also change the dimension of the map with override ```protected void setDimBoard(int dimBoard)``` and put super.setDimBoard(the value of the dim of the board you wan); but careful the icon will not work properly you have to create a new package with good dimensions**
     and override each icon you use to is proper version and dimension
-  - if you just want to change the icon override setDimBoard don't touch to the super let the arg be the same as the methods  
+  - if you just want to change the icon override setDimBoard ```super.setDimBoard(the same variable as your override methods)```
     #### put a icon 
     - make sur your icon is a png
     - in the override methods setDimBoard just do ```theIconOfWindowInitializerYouWantToChange = new javax.swing.ImageIcon(getClass().getResource("path/name.png"));```
@@ -52,11 +52,11 @@
     - ```pnj1.addItemToSell(new ViewHidden(this));```
     - ```pnj1.addItemToSell(new Potion(40));```
 - You can put everything you want if is extends ObjectBuy so all the java in package item and  package buy     
-- one your pnj has all you want use to put in the game ```putPnj(new Coord(x, y), pnj1, pnjIcon);``` you can change pnjIcon if you want
+- one your pnj has all you want use to put in the game ```putPnj(new Coord(x, y), pnj1, shopIcon);``` you can change pnjIcon if you want
 
 ### setObject()
 - here you put all the Enemy or shield on the map if you want to change the icon of the enemy go tcheck section **Change the dim of the map** 
-- you just only need ```putPnj(new Coord(x, y), new PnjKnight(), knight);``` 
+- you just only need ```putPnj(new Coord(x, y), new PnjKnight(), knightIcon);``` 
   here in the new you can put every mob of the package enemy, and after is the icon 
 I advise you to use the same for all the same type of enemy
 
@@ -68,9 +68,9 @@ I advise you to use the same for all the same type of enemy
   - second is a enum of Dificulty   if you put Dificulty.FREE the player can choose the difficulty or you can choose for him
     by put Difficulty.MEDIUM or Difficulty.EASY or Difficulty.HARD
 ### setBomb()
-  - there is another methods you can override if you want to use you just have to put in super.setBomb(and an int )
+  - there is another methods you can override if you want to use ```protected void setBomb(int numberOfBomb)```you just have to put in super.setBomb(and an int )
     i have made some constant who will make the work pretty good but you can put the int you want, 0 if you don't want bomb 
-    the int is 1/i will be a bomb
+    the int you put will make that  1/int case will be a bomb
     
 - **I hope you like this program if you have advice for upgrade it or make the create map easier tell me**
   

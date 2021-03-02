@@ -1,4 +1,3 @@
-import Game.DefaultMap;
 import Game.MapSelector;
 
 /** For launch

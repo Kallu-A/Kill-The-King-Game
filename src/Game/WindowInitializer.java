@@ -138,14 +138,6 @@ public class WindowInitializer extends JFrame {
         contentPane.add(grid, BorderLayout.CENTER);
     }
 
-    public ImageIcon[] getPlayerState(){
-        ImageIcon[] state = new ImageIcon[3];
-        state[0] = playerIcon;
-        state[1] = playerGetBombIcon;
-        state[2] = groundIcon;
-        return state;
-    }
-
     /** do the right action in case of the key */
     private void keyAction(KeyEvent e){
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) closeWindow();
@@ -221,16 +213,6 @@ public class WindowInitializer extends JFrame {
                 break;
 
             default: break;
-        }
-    }
-
-    /** détruit le jeu pour la relance */
-    private void relance(){
-        int optionSelect = JOptionPane.showConfirmDialog(this, "Do you want to launch a new game?");
-
-        if (optionSelect == 0) {
-            dispose();
-            new MapSelector();
         }
     }
 
@@ -320,48 +302,6 @@ public class WindowInitializer extends JFrame {
                 "</body> </html>");
     }
 
-    /** show all the commands*/
-    public void showCommand(){
-        if (player.health.life <= Health.MINIMUN_LIFE){
-            JOptionPane.showMessageDialog(this,
-                    "Q: show commands\n" +
-                            "SPACE : you can cheat and revive \n" +
-                            "L: launch a new game", "Commands when dead", JOptionPane.INFORMATION_MESSAGE);
-        } else
-            JOptionPane.showMessageDialog(this, "Arrows: to move \n" +
-                "A: open the store next door for buying \n" +
-                "R: open the store next door  for selling \n" +
-                "E: open the inventory and allows you to change the current weapon \n" +
-                "Z: scan the surrounding enemies\n" +
-                "Q: show commands\n" +
-                "SPACE : if you're dead you still can cheat and revive \n" +
-                "ESCAPE :  close the game\n" +
-                "L: launch a new game","Commands", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    /** get the btnObject from coord */
-    public Case getCaseFromCoord(Coord coord){
-        if (this.isBoard(coord))
-         return board[coord.line][coord.col];
-        else return null;
-    }
-
-    /** put the bomb */
-    private void setBombPrivate(int numberOfBomb){
-        if (numberOfBomb == 0) return;
-        int bombe;
-        for (int i = 0; i < BOARD_DIM; i++){
-            for (int j = 0; j < BOARD_DIM; j++){
-                if (!board[i][j].isWall()){
-                    bombe = (int) (Math.random() * numberOfBomb);
-                    if (bombe == 1 && board[i][j].isFree(player)) {
-                        board[i][j].setObjectCase(new Bomb());
-                    }
-                }
-            }
-        }
-    }
-
     /** make the setup a of the board*/
     private void setUpBoard(){
         setWall();
@@ -388,6 +328,23 @@ public class WindowInitializer extends JFrame {
     }
 
     // ------ end override ------
+
+    /** put the bomb */
+    private void setBombPrivate(int numberOfBomb){
+        if (numberOfBomb == 0) return;
+        int bombe;
+        for (int i = 0; i < BOARD_DIM; i++){
+            for (int j = 0; j < BOARD_DIM; j++){
+                if (!board[i][j].isWall()){
+                    bombe = (int) (Math.random() * numberOfBomb);
+                    if (bombe == 1 && board[i][j].isFree(player)) {
+                        board[i][j].setObjectCase(new Bomb());
+                    }
+                }
+            }
+        }
+    }
+
 
     /** put a pnj at the coord */
     protected void putPnj(Coord coord, Object objectPnj, ImageIcon pnjIcon){
@@ -428,6 +385,35 @@ public class WindowInitializer extends JFrame {
         if (!ennemyScan) JOptionPane.showMessageDialog(this, "there is no enemy in the vicinity", "no enemy", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /** show all the commands*/
+    public void showCommand(){
+        if (player.health.life <= Health.MINIMUN_LIFE){
+            JOptionPane.showMessageDialog(this,
+                    "Q: show commands\n" +
+                            "SPACE : you can cheat and revive \n" +
+                            "L: launch a new game", "Commands when dead", JOptionPane.INFORMATION_MESSAGE);
+        } else
+            JOptionPane.showMessageDialog(this, "Arrows: to move \n" +
+                    "A: open the store next door for buying \n" +
+                    "R: open the store next door  for selling \n" +
+                    "E: open the inventory and allows you to change the current weapon \n" +
+                    "Z: scan the surrounding enemies\n" +
+                    "Q: show commands\n" +
+                    "SPACE : if you're dead you still can cheat and revive \n" +
+                    "ESCAPE :  close the game\n" +
+                    "L: launch a new game","Commands", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    /** détruit le jeu pour la relance */
+    private void relance(){
+        int optionSelect = JOptionPane.showConfirmDialog(this, "Do you want to launch a new game?");
+
+        if (optionSelect == 0) {
+            dispose();
+            new MapSelector();
+        }
+    }
+
     /** put the enemy randomly in the map with a maxShield number*/
     protected void putEnemyRandom(int maxShield, Difficulty difficultySelect){
         if (difficultySelect == Difficulty.FREE) difficultySelect = DifficultySelector.getDifficulty();
@@ -454,4 +440,22 @@ public class WindowInitializer extends JFrame {
     public Player getPlayer() {
         return player;
     }
+
+    /** get the Case from coord */
+    public Case getCaseFromCoord(Coord coord){
+        if (this.isBoard(coord))
+            return board[coord.line][coord.col];
+        else return null;
+    }
+
+    /** get the free state of the player*/
+    public ImageIcon[] getPlayerState(){
+        ImageIcon[] state = new ImageIcon[3];
+        state[0] = playerIcon;
+        state[1] = playerGetBombIcon;
+        state[2] = groundIcon;
+        return state;
+    }
+
+
 }
