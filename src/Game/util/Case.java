@@ -134,12 +134,12 @@ public class Case extends JLabel {
     }
 
     /** scan of the ennmy*/
-    public boolean scanEnnemy(){
+    public boolean scanEnnemy(Player player){
         boolean ennemyScan = false;
         for (Object object: objectCase.list){
             if (object instanceof PnjEnnemy) {
                 PnjEnnemy ennemy = ((PnjEnnemy) object);
-                JOptionPane.showMessageDialog(this, ennemy.toString(), "Scan" , JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, ennemy.toString(player), "Scan" , JOptionPane.INFORMATION_MESSAGE);
                 ennemyScan = true;
             }
         }

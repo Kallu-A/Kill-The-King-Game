@@ -30,9 +30,8 @@ public class PnjEnnemy extends Object {
         }
     }
 
-    @Override
-    public String toString() {
-        return "\n Attack : " + weapon.getAttack() +
+    public String toString(Player player) {
+        return "\n Attack : " + Math.ceil(weapon.getAttack() * player.health.getShield()) +
                 "\n Life : " + life +
                 "\n Reward : " + reward ;
     }

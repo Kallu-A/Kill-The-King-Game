@@ -1,6 +1,7 @@
 package Game.util.Object.enemy;
 
 import Game.util.Object.item.DragonFire;
+import Game.util.Player.Player;
 
 /** dragon pnj*/
 public class PnjDragon extends PnjEnnemy{
@@ -11,9 +12,9 @@ public class PnjDragon extends PnjEnnemy{
     }
 
     @Override
-    public String toString() {
+    public String toString(Player player) {
         return "<html> <body> <b />"+
-                "Dragon "+ super.toString();
+                "Dragon "+ super.toString(player);
     }
 
 }

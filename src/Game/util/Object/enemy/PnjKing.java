@@ -1,6 +1,7 @@
 package Game.util.Object.enemy;
 
 import Game.util.Object.item.KingSword;
+import Game.util.Player.Player;
 
 /** the king */
 public class PnjKing extends PnjEnnemy {
@@ -14,8 +15,8 @@ public class PnjKing extends PnjEnnemy {
     }
 
     @Override
-    public String toString() {
+    public String toString(Player player) {
         return "<html> <body> <b />"+
-                "The King "+ super.toString();
+                "The King "+ super.toString(player);
     }
 }

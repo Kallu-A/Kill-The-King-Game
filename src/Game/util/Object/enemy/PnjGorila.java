@@ -1,6 +1,7 @@
 package Game.util.Object.enemy;
 
 import Game.util.Object.item.HandGorila;
+import Game.util.Player.Player;
 
 /** pnj gorila*/
 public class PnjGorila  extends PnjEnnemy{
@@ -11,9 +12,9 @@ public class PnjGorila  extends PnjEnnemy{
     }
 
     @Override
-    public String toString() {
+    public String toString(Player player) {
         return "<html> <body> <b />"+
-                "Gorila "+ super.toString();
+                "Gorila "+ super.toString(player);
     }
 
 }

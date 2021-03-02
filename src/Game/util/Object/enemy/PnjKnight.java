@@ -1,6 +1,7 @@
 package Game.util.Object.enemy;
 
 import Game.util.Object.item.Spear;
+import Game.util.Player.Player;
 
 /** pnj knight*/
 public class PnjKnight extends PnjEnnemy{
@@ -11,9 +12,9 @@ public class PnjKnight extends PnjEnnemy{
     }
 
     @Override
-    public String toString() {
+    public String toString(Player player) {
         return "<html> <body> <b />"+
-                "Knight "+ super.toString();
+                "Knight "+ super.toString(player);
     }
 
 }

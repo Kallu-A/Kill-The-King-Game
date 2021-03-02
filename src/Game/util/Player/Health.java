@@ -44,4 +44,7 @@ public class Health {
         shield = 1 - ( (double) levelShield/10);
     }
 
+    public double getShield() {
+        return shield;
+    }
 }

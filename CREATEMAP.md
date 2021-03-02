@@ -16,6 +16,8 @@
       - **protected void setShop()**
       - **protected void setObject()**
     - You don't have to fill them for the moment except for setWall you have to put a player in first instruction ```player = new Player(this, new Coord(x,y));```
+    - Of course for all the tutorial x y are x = line y = col and is all a int 
+    - the board is like a 2 dim board 0,0 is in the top left and max max bottom right
   #### Change the dim of the map
   - **You can also change the dimension of the map with override ```protected void setDimBoard(int dimBoard)``` and put super.setDimBoard(the value of the dim of the board you wan); but careful the icon will not work properly you have to create a new package with good dimensions**
     and override each icon you use to is proper version and dimension
@@ -38,7 +40,8 @@
 ## fill the map
 - **Warning** i do not recommend to put several enemy or shop or if it's a wall in the same case and just add one player and one king 
 ### setWall()
-- Okay so the first statement will be to create a Player ```player = new Player(this, new Coord(x,y);``` x,y is the coord
+- Okay so the first statement will be to create a Player ```player = new Player(this, new Coord(x,y);``` x,y is the coord | but normaly you already done that
+
 - Then you free to put wall like you want with ```board[i][j].setWall(wallIcon);``` wallIcon 
   is the default icon of the wall but if you don't like it you can change by load one of your icon
   

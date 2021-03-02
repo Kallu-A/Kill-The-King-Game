@@ -423,7 +423,7 @@ public class WindowInitializer extends JFrame {
         boolean ennemyScan = false;
         LinkedList<Coord> coordAdj = player.getCoord().getCoordAdjacent(this);
         for ( Coord coord : coordAdj){
-            if (getCaseFromCoord(coord).scanEnnemy()) ennemyScan = true;
+            if (getCaseFromCoord(coord).scanEnnemy(player)) ennemyScan = true;
         }
         if (!ennemyScan) JOptionPane.showMessageDialog(this, "there is no enemy in the vicinity", "no enemy", JOptionPane.INFORMATION_MESSAGE);
     }
