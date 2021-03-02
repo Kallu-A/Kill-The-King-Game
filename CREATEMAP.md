@@ -15,8 +15,16 @@
       - **protected void setWall()**
       - **protected void setShop()**
       - **protected void setObject()**
-    - You don't have to fill them for the moment 
-    
+    - You don't have to fill them for the moment except for setWall you have to put a player in first instruction ```player = new Player(this, new Coord(x,y));```
+  #### Change the dim of the map
+  - **You can also change the dimension of the map with override ```protected void setDimBoard(int dimBoard)``` and put super.setDimBoard(the value of the dim of the board you wan); but careful the icon will not work properly you have to create a new package with good dimensions**
+    and override each icon you use to is proper version and dimension
+  - if you just want to change the icon override setDimBoard don't touch to the super let the arg be the same as the methods  
+    #### put a icon 
+    - make sur your icon is a png
+    - in the override methods setDimBoard just do ```theIconOfWindowInitializerYouWantToChange = new javax.swing.ImageIcon(getClass().getResource("path/name.png"));```
+    - and repeat for all the icon you want to change juste override a ImageIcon of WindowInitializer if you want to keep it easy
+     
     #### link with the MapSelector 
     - Go to the java MapSelector who is in the same package as your map 
     I have make // comment where you have to put code in the selectionValue String[] 
@@ -30,9 +38,9 @@
 ## fill the map
 - **Warning** i do not recommend to put several enemy or shop or if it's a wall in the same case and just add one player and one king 
 ### setWall()
-- Okay so the first statement will be to create a Player ```player = new Player(this, new Coord(x,y));``` x,y is the coord
+- Okay so the first statement will be to create a Player ```player = new Player(this, new Coord(x,y);``` x,y is the coord
 - Then you free to put wall like you want with ```board[i][j].setWall(wallIcon);``` wallIcon 
-  is the default icon of the wall but if you don't like it you can change by load one of your icon but the icon must be and it applies to all **35x35px, .png**
+  is the default icon of the wall but if you don't like it you can change by load one of your icon
   
 ### setShop()  
 - **Warning** put a shield in the shop is ```new ShieldBuy()```
@@ -44,7 +52,7 @@
 - one your pnj has all you want use to put in the game ```putPnj(new Coord(x, y), pnj1, pnjIcon);``` you can change pnjIcon if you want
 
 ### setObject()
-- here you put all the Enemy or shield on the map 
+- here you put all the Enemy or shield on the map if you want to change the icon of the enemy go tcheck section **Change the dim of the map** 
 - you just only need ```putPnj(new Coord(x, y), new PnjKnight(), knight);``` 
   here in the new you can put every mob of the package enemy, and after is the icon 
 I advise you to use the same for all the same type of enemy
