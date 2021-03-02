@@ -146,6 +146,8 @@ public class KindomMap extends WindowInitializer{
         pnj1.addItemToSell(new Potion(20));
         pnj1.addItemToSell(new Potion(40));
         pnj1.addItemToSell(new Potion(40));
+        pnj1.addItemToSell(new Potion(80));
+        pnj1.addItemToSell(new Potion(80));
     }
 
     @Override
@@ -169,7 +171,7 @@ public class KindomMap extends WindowInitializer{
 
         putPnj(new Coord(14, 0), new PnjKing(), kingIcon);
 
-        putEnemyRandom(1, Difficulty.FREE);
+        putEnemyRandom(1, Difficulty.HARD);
     }
 
     @Override
