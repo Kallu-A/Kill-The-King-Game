@@ -108,6 +108,8 @@ public class CapitalMap extends WindowInitializer{
     protected void setObject() {
         super.setObject();
 
+        player.addItemInventory(new Sword());
+
         putPnj(new Coord(9, 8), new PnjKnight(), knightIcon);
         putPnj(new Coord(10, 8), new PnjKnight(), knightIcon);
 
@@ -119,7 +121,6 @@ public class CapitalMap extends WindowInitializer{
 
         putPnj(new Coord(9, 19), new PnjKing(), kingIcon);
         putPnj(new Coord(10, 19), new PnjDragon(), dragonIcon);
-
 
         putEnemyRandom(2, Difficulty.FREE);
     }

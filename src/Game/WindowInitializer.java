@@ -316,7 +316,7 @@ public class WindowInitializer extends JFrame {
     /** set the current item hold*/
     private void setCurrentItem(){
         currentItem.setText("<html> <body> <font color='bf1de7'>" +
-                "Current item : "+ player.current.toStringPrint() +
+                "Current : "+ player.current.toStringPrint() +
                 "</body> </html>");
     }
 

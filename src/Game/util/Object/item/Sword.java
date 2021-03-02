@@ -4,7 +4,7 @@ package Game.util.Object.item;
 public class Sword extends Item{
 
     public Sword() {
-        super(20, 100);
+        super(10, 50);
     }
 
     @Override

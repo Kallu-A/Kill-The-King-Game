@@ -52,11 +52,7 @@ public class DefaultMap extends WindowInitializer {
 
         board[2][5].setWall(treeIcon);
         board[1][4].setWall(treeIcon);
-        board[1][4].setWall(treeIcon);
-        board[0][19].setWall(treeIcon);
         board[3][18].setWall(treeIcon);
-        board[17][18].setWall(treeIcon);
-        board[17][19].setWall(treeIcon);
         board[16][4].setWall(treeIcon);
         board[15][14].setWall(treeIcon);
     }
@@ -65,6 +61,8 @@ public class DefaultMap extends WindowInitializer {
     @Override
     protected void setShop() {
         super.setShop();
+
+        player.addItemInventory(new Sword());
 
         PnjMerchand pnj1 = new PnjMerchand();
         PnjMerchand pnj2 = new PnjMerchand();

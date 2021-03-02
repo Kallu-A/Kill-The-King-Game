@@ -8,10 +8,10 @@ public class KingSword extends Item{
 
     @Override
     public String toString() {
-        return "King Sword, attack :"+attack + " Price = "+price;
+        return "Excalibure, attack :"+attack + " Price = "+price;
     }
 
     public String toStringPrint(){
-        return  "King Sword ATK:"+attack;
+        return  "Excalibure ATK:"+attack;
     }
 }

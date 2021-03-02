@@ -34,7 +34,7 @@ public class Health {
 
     /** i++ the shield*/
     public void setNewShieldLevelIncrement(){
-        if (levelShield > 9) return;
+        if (levelShield >= 9) return;
         levelShield++;
         setShield();
     }
