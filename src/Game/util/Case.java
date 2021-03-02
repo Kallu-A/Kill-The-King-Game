@@ -66,14 +66,14 @@ public class Case extends JLabel {
     }
 
     /** get the value of the bomb and remove it*/
-    public int getBomb(boolean remove){
+    public int getBomb(boolean remove, WindowInitializer window){
         int value = 0;
         for (Object object: objectCase.list){
             if (object instanceof Bomb) {
                 Bomb bomb  = (Bomb) object;
                 value = bomb.valueDamage;
                 if (remove) removeObject(object);
-                setIcon(new javax.swing.ImageIcon(getClass().getResource("Object/blast.png")));
+                setIcon(window.getPlayer().playerBomb);
                 return value;
             }
         }

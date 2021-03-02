@@ -13,11 +13,11 @@ public class Coord {
         this.col = col;
     }
 
-    public LinkedList<Coord> getCoordAdjacent(){
+    public LinkedList<Coord> getCoordAdjacent(WindowInitializer window){
         LinkedList<Coord> coordAdjacent = new LinkedList<>();
         for (int i=-1; i<2; i++){
             for (int j=-1; j<2; j++){
-                if (WindowInitializer.isBoard(new Coord(line+i, col+j) ))
+                if (window.isBoard(new Coord(line+i, col+j) ))
                     coordAdjacent.add(new Coord(line+i, col+j));
             }
         }

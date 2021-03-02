@@ -3,7 +3,6 @@ package Game;
 import Game.util.D2Dim.Coord;
 import Game.util.Difficulty;
 import Game.util.Object.PnjMerchand;
-import Game.util.Object.Shield;
 import Game.util.Object.buy.Potion;
 import Game.util.Object.buy.ShieldBuy;
 import Game.util.Object.buy.ViewHidden;
@@ -78,7 +77,7 @@ public class CapitalMap extends WindowInitializer{
         pnjFirstZone.addItemToSell(new Potion(70));
         pnjFirstZone.addItemToSell(new Potion(70));
 
-        putPnj(new Coord(1,2), pnjFirstZone, pnjIcon);
+        putPnj(new Coord(1,2), pnjFirstZone, shopIcon);
 
         pnjSecondZone.addItemToSell(new Axe());
         pnjSecondZone.addItemToSell(new ViewHidden(this));
@@ -93,7 +92,7 @@ public class CapitalMap extends WindowInitializer{
         pnjSecondZone.addItemToSell(new Potion(80));
         pnjSecondZone.addItemToSell(new Potion(80));
 
-        putPnj(new Coord(17,17), pnjSecondZone, pnjIcon);
+        putPnj(new Coord(17,17), pnjSecondZone, shopIcon);
 
         pnjLastZone.addItemToSell(new LegendarieWeapon());
         pnjLastZone.addItemToSell(new ShieldBuy());
@@ -102,24 +101,24 @@ public class CapitalMap extends WindowInitializer{
         pnjLastZone.addItemToSell(new Potion(60));
         pnjLastZone.addItemToSell(new Potion(60));
 
-        putPnj(new Coord(8, 17), pnjLastZone, pnjIcon);
+        putPnj(new Coord(8, 17), pnjLastZone, shopIcon);
     }
 
     @Override
     protected void setObject() {
         super.setObject();
 
-        putPnj(new Coord(9, 8), new PnjKnight(), knight);
-        putPnj(new Coord(10, 8), new PnjKnight(), knight);
+        putPnj(new Coord(9, 8), new PnjKnight(), knightIcon);
+        putPnj(new Coord(10, 8), new PnjKnight(), knightIcon);
 
-        putPnj(new Coord(9, 13), new PnjCastle(), castle);
-        putPnj(new Coord(10, 13), new PnjCastle(), castle);
+        putPnj(new Coord(9, 13), new PnjCastle(), castleIcon);
+        putPnj(new Coord(10, 13), new PnjCastle(), castleIcon);
 
-        putPnj(new Coord(9, 16), new PnjDragon(), dragon);
-        putPnj(new Coord(10, 16), new PnjDragon(), dragon);
+        putPnj(new Coord(9, 16), new PnjDragon(), dragonIcon);
+        putPnj(new Coord(10, 16), new PnjDragon(), dragonIcon);
 
-        putPnj(new Coord(9, 19), new PnjKing(), king);
-        putPnj(new Coord(10, 19), new PnjDragon(), dragon);
+        putPnj(new Coord(9, 19), new PnjKing(), kingIcon);
+        putPnj(new Coord(10, 19), new PnjDragon(), dragonIcon);
 
 
         putEnemyRandom(2, Difficulty.FREE);

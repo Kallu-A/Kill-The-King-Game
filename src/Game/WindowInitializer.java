@@ -6,8 +6,6 @@ import Game.util.Difficulty;
 import Game.util.DifficultySelector;
 import Game.util.Object.*;
 import Game.util.Object.Object;
-import Game.util.Object.enemy.PnjGorila;
-import Game.util.Object.enemy.PnjSoldier;
 import Game.util.Player.Health;
 import Game.util.Player.Player;
 
@@ -28,7 +26,7 @@ public class WindowInitializer extends JFrame {
 
     public boolean hasCheat = false;
 
-    protected static final int BOARD_DIM = 20;
+    protected int BOARD_DIM = 20;
     protected JPanel contentPane;
     protected Case[][] board;
     protected JPanel grid;
@@ -40,20 +38,21 @@ public class WindowInitializer extends JFrame {
     protected JLabel currentItem;
     protected Coord move = new Coord(0, 0);
 
-    protected final ImageIcon blast = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/blastvoid.png"));
-    protected final ImageIcon ground = new javax.swing.ImageIcon(this.getClass().getResource("util/floor.png"));
-    protected final ImageIcon deathPlayer = new javax.swing.ImageIcon(this.getClass().getResource("util/Player/deathWarrior.png"));
-    protected final ImageIcon shieldIcon = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/armor.png"));
-    protected final ImageIcon wallIcon = new javax.swing.ImageIcon(this.getClass().getResource("util/montain.png"));
-    protected final ImageIcon pnjIcon = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/shop.png"));
-    protected final ImageIcon playerAlive = new javax.swing.ImageIcon(this.getClass().getResource("util/Player/warrior.png"));
+    protected ImageIcon bombIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/bomb.png"));
+    protected ImageIcon groundIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/ground.png"));
+    protected ImageIcon deadPlayerIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/playerDead.png"));
+    protected ImageIcon shieldIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/shield.png"));
+    protected ImageIcon wallIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/wall.png"));
+    protected ImageIcon shopIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/shop.png"));
+    protected ImageIcon playerIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/player.png"));
+    protected ImageIcon playerGetBombIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/playerGetBomb.png"));
 
-    protected final ImageIcon soldier = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/enemy/soldier.png"));
-    protected final ImageIcon knight = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/enemy/knight.png"));
-    protected final ImageIcon gorila = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/enemy/gorila.png"));
-    protected final ImageIcon king = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/enemy/king.png"));
-    protected final ImageIcon castle = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/enemy/castle.png"));
-    protected final ImageIcon dragon = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/enemy/dragon.png"));
+    protected ImageIcon soldierIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/soldier.png"));
+    protected ImageIcon knightIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/knight.png"));
+    protected ImageIcon gorilaIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/gorila.png"));
+    protected ImageIcon kingIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/king.png"));
+    protected ImageIcon castleIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/castle.png"));
+    protected ImageIcon dragonIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/dragon.png"));
 
     private static boolean firstLaunch = true;
 
@@ -67,7 +66,7 @@ public class WindowInitializer extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         this.contentPane = (JPanel) getContentPane();
-
+        setDimBoard(20);
         initGrid();
         initToolBar();
         setUpBoard();
@@ -100,8 +99,13 @@ public class WindowInitializer extends JFrame {
         System.gc();
     }
 
+    /** overide methode*/
+    protected void setDimBoard(int dimBoard){
+        this.BOARD_DIM = dimBoard;
+    }
+
     /** return if the Coord is in the board*/
-    public static boolean isBoard(Coord coord){
+    public boolean isBoard(Coord coord){
         return ( (coord.line >= 0 && coord.line < BOARD_DIM) && (coord.col >= 0 && coord.col < BOARD_DIM) );
     }
 
@@ -112,11 +116,19 @@ public class WindowInitializer extends JFrame {
         for (int line = 0; line< BOARD_DIM; line++){
             for (int col = 0; col < BOARD_DIM; col++){
                 board[line][col] = new Case(new Coord(line, col));
-                board[line][col].setIcon(ground);
+                board[line][col].setIcon(groundIcon);
                 grid.add(board[line][col]);
             }
         }
         contentPane.add(grid, BorderLayout.CENTER);
+    }
+
+    public ImageIcon[] getPlayerState(){
+        ImageIcon[] state = new ImageIcon[3];
+        state[0] = playerIcon;
+        state[1] = playerGetBombIcon;
+        state[2] = groundIcon;
+        return state;
     }
 
     /** do the right action in case of the key */
@@ -125,7 +137,7 @@ public class WindowInitializer extends JFrame {
             if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                 player.health.life = 10;
                 hasCheat = true;
-                getCaseFromCoord(player.getCoord()).setIcon(playerAlive);
+                getCaseFromCoord(player.getCoord()).setIcon(playerIcon);
                 setInfoGame();
             } else if ( e.getKeyCode() == KeyEvent.VK_ESCAPE) relance();
             else if (e.getKeyCode() == KeyEvent.VK_R) showCommand();
@@ -135,7 +147,7 @@ public class WindowInitializer extends JFrame {
 
             case KeyEvent.VK_UP:
                 move =new Coord(player.getLine()-1, player.getCol());
-                if (WindowInitializer.isBoard(move)) {
+                if (this.isBoard(move)) {
                     getCaseFromCoord(move).interactWithEnnemy(this);
                     doAction(move);
                 }
@@ -143,7 +155,7 @@ public class WindowInitializer extends JFrame {
 
             case KeyEvent.VK_RIGHT:
                 move =new Coord(player.getLine(), player.getCol()+1);
-                if (WindowInitializer.isBoard(move)) {
+                if (this.isBoard(move)) {
                     getCaseFromCoord(move).interactWithEnnemy(this);
                     doAction(move);
                 }
@@ -151,7 +163,7 @@ public class WindowInitializer extends JFrame {
 
             case KeyEvent.VK_LEFT:
                 move = new Coord(player.getLine(), player.getCol()-1);
-                if (WindowInitializer.isBoard(move)) {
+                if (this.isBoard(move)) {
                     getCaseFromCoord(move).interactWithEnnemy(this);
                     doAction(move);
                 }
@@ -159,7 +171,7 @@ public class WindowInitializer extends JFrame {
 
             case KeyEvent.VK_DOWN:
                 move = new Coord(player.getLine()+1, player.getCol());
-                if (WindowInitializer.isBoard(move)) {
+                if (this.isBoard(move)) {
                     getCaseFromCoord(move).interactWithEnnemy(this);
                     doAction(move);
                 }
@@ -217,7 +229,7 @@ public class WindowInitializer extends JFrame {
     private void playerDead(Coord coordPlayer){
         if ( !coordPlayer.isCoordEqual(player.getCoord()))  return;
         if (player.health.life <= Health.MINIMUN_LIFE){
-            getCaseFromCoord(player.getCoord()).setIcon(deathPlayer);
+            getCaseFromCoord(player.getCoord()).setIcon(deadPlayerIcon);
             setPlayerDeadHealth();
         }
     }
@@ -312,7 +324,7 @@ public class WindowInitializer extends JFrame {
 
     /** get the btnObject from coord */
     public Case getCaseFromCoord(Coord coord){
-        if (WindowInitializer.isBoard(coord))
+        if (this.isBoard(coord))
          return board[coord.line][coord.col];
         else return null;
     }
@@ -363,7 +375,7 @@ public class WindowInitializer extends JFrame {
     /** function who interact with the adjacent coord of the player*/
     private void interactWithPnj(boolean buy) {
         boolean interact = false;
-        LinkedList<Coord> coordAdj = player.getCoord().getCoordAdjacent();
+        LinkedList<Coord> coordAdj = player.getCoord().getCoordAdjacent(this);
         for (Coord value : coordAdj)
             if (getCaseFromCoord(value).interactWithPnj(player, this, buy)) interact = true;
         setInfoGame();
@@ -375,9 +387,9 @@ public class WindowInitializer extends JFrame {
     public void showBomb(boolean hidden){
         for (int i = 0; i<BOARD_DIM; i++){
             for (int j = 0; j<BOARD_DIM; j++){
-                if (board[i][j].getBomb(false) != 0){
-                    if (hidden) board[i][j].setIcon(ground);
-                    else board[i][j].setIcon(blast);
+                if (board[i][j].getBomb(false, this) != 0){
+                    if (hidden) board[i][j].setIcon(groundIcon);
+                    else board[i][j].setIcon(bombIcon);
                 }
             }
         }
@@ -386,7 +398,7 @@ public class WindowInitializer extends JFrame {
     /** look for stats of nearby ennemies*/
     private void scanEnnemies(){
         boolean ennemyScan = false;
-        LinkedList<Coord> coordAdj = player.getCoord().getCoordAdjacent();
+        LinkedList<Coord> coordAdj = player.getCoord().getCoordAdjacent(this);
         for ( Coord coord : coordAdj){
             if (getCaseFromCoord(coord).scanEnnemy()) ennemyScan = true;
         }

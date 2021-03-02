@@ -21,6 +21,7 @@ public class MapSelector {
                 {
                 "Default Map",
                 "Capital Map",
+                "Kingdom Map"
                 //add string of you'r map here
                 // <---
                 };
@@ -38,6 +39,10 @@ public class MapSelector {
 
             case "Capital Map":
                 new CapitalMap();
+                break;
+
+            case "Kingdom Map":
+                new KindomMap();
                 break;
 
                 // add your case statement here be carefull it's the same String in the selectionValue

@@ -18,12 +18,14 @@ public class Player {
     private final WindowInitializer board;
     public final ImageIcon iconPlayer;
     public final ImageIcon ground;
+    public final ImageIcon playerBomb;
     private int money;
     public final ObjectCase inventory;
     public Item current;
     public Health health;
 
     public Player(WindowInitializer board, Coord coord) {
+        ImageIcon[] stateIcon = board.getPlayerState();
         health = new Health();
         this.coord = coord;
         this.board = board;
@@ -32,16 +34,17 @@ public class Player {
         inventory.list.add(new Hand());
         current = (Item) inventory.list.get(0);
 
-        iconPlayer = new javax.swing.ImageIcon(this.getClass().getResource("warrior.png"));
+        iconPlayer = stateIcon[0];
         setPlayerNewPosition(coord, true);
-        ground = new javax.swing.ImageIcon(this.getClass().getResource("../floor.png"));
+        playerBomb = stateIcon[1];
+        ground = stateIcon[2];
     }
 
 
     /** try if the coord is valid or not and do the change*/
     public void setCoord(Coord coord) {
-        if (!WindowInitializer.isBoard(coord) || board.getCaseFromCoord(coord).isWall()) return;
-        LinkedList<Coord> coordAdj = this.coord.getCoordAdjacent();
+        if (!board.isBoard(coord) || board.getCaseFromCoord(coord).isWall()) return;
+        LinkedList<Coord> coordAdj = this.coord.getCoordAdjacent(board);
         for (Coord value : coordAdj) {
             if (value.isCoordEqual(coord) && !value.isCoordEqual(this.coord)) {
                 setPlayerPosition(new Move(value, this.coord));
@@ -86,7 +89,7 @@ public class Player {
     /** set all the action when a move*/
     public void set(Coord coord){
         setMoney(board.getCaseFromCoord(coord).getCoin() );
-        setMine(board.getCaseFromCoord(coord).getBomb(true));
+        setMine(board.getCaseFromCoord(coord).getBomb(true, this.board));
         board.getCaseFromCoord(coord).getShield(this);
     }
 

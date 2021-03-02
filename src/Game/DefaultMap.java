@@ -2,9 +2,7 @@ package Game;
 
 import Game.util.D2Dim.Coord;
 import Game.util.Difficulty;
-import Game.util.Object.Coin;
 import Game.util.Object.PnjMerchand;
-import Game.util.Object.Shield;
 import Game.util.Object.buy.Potion;
 import Game.util.Object.buy.ShieldBuy;
 import Game.util.Object.buy.ViewHidden;
@@ -108,34 +106,34 @@ public class DefaultMap extends WindowInitializer {
         pnj3.addItemToSell(new Potion(90));
         pnj3.addItemToSell(new Potion(90));
 
-        putPnj(new Coord(10, 12), pnj2, pnjIcon);
-        putPnj(new Coord(12, 4), pnj1, pnjIcon);
-        putPnj(new Coord(6, 14), pnj3, pnjIcon);
+        putPnj(new Coord(10, 12), pnj2, shopIcon);
+        putPnj(new Coord(12, 4), pnj1, shopIcon);
+        putPnj(new Coord(6, 14), pnj3, shopIcon);
     }
 
     @Override
     protected void setObject() {
         super.setObject();
 
-        putPnj(new Coord(6, 7), new PnjKnight(), knight);
-        putPnj(new Coord(6, 8), new PnjKnight(), knight);
+        putPnj(new Coord(6, 7), new PnjKnight(), knightIcon);
+        putPnj(new Coord(6, 8), new PnjKnight(), knightIcon);
 
-        putPnj(new Coord(6, 11), new PnjKnight(), knight);
-        putPnj(new Coord(6, 12), new PnjKnight(), knight);
+        putPnj(new Coord(6, 11), new PnjKnight(), knightIcon);
+        putPnj(new Coord(6, 12), new PnjKnight(), knightIcon);
 
-        putPnj(new Coord(19, 7), new PnjKnight(), knight);
-        putPnj(new Coord(18, 7), new PnjKnight(), knight);
+        putPnj(new Coord(19, 7), new PnjKnight(), knightIcon);
+        putPnj(new Coord(18, 7), new PnjKnight(), knightIcon);
 
-        putPnj(new Coord(7, 16), new PnjKnight(), knight);
-        putPnj(new Coord(6, 18), new PnjKnight(), knight);
-        putPnj(new Coord(9, 14), new PnjKnight(), knight);
+        putPnj(new Coord(7, 16), new PnjKnight(), knightIcon);
+        putPnj(new Coord(6, 18), new PnjKnight(), knightIcon);
+        putPnj(new Coord(9, 14), new PnjKnight(), knightIcon);
 
-        putPnj(new Coord(3, 17), new PnjCastle(), castle);
-        putPnj(new Coord(16, 19), new PnjCastle(), castle);
+        putPnj(new Coord(3, 17), new PnjCastle(), castleIcon);
+        putPnj(new Coord(16, 19), new PnjCastle(), castleIcon);
 
-        putPnj(new Coord(10, 17), new PnjKing(), king);
-        putPnj(new Coord(10, 16), new PnjDragon(), dragon);
-        putPnj(new Coord(10, 18), new PnjDragon(), dragon);
+        putPnj(new Coord(10, 17), new PnjKing(), kingIcon);
+        putPnj(new Coord(10, 16), new PnjDragon(), dragonIcon);
+        putPnj(new Coord(10, 18), new PnjDragon(), dragonIcon);
 
         board[8][7].putShield(shieldIcon);
 
