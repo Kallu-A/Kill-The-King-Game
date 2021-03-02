@@ -149,4 +149,8 @@ public class DefaultMap extends WindowInitializer {
 
     }
 
+    @Override
+    protected void setCoin(int valueMaxOfACoins) {
+        super.setCoin(WindowInitializer.NUMBER_MAX_COIN_NORMAL);
+    }
 }

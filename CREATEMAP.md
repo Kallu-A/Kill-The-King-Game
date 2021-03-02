@@ -67,6 +67,10 @@ I advise you to use the same for all the same type of enemy
     max 2 shield
   - second is a enum of Dificulty   if you put Dificulty.FREE the player can choose the difficulty or you can choose for him
     by put Difficulty.MEDIUM or Difficulty.EASY or Difficulty.HARD
+### setCoin()
+ - If you want that each Case has a coin you can override ```protected void setCoin(int valueMaxOfACoins)``` and then inside put
+   ```super.setCoin(The value maximun your case can have);``` put 0 and there will be no coin you have a constant ```WindowInitializer.NUMBER_MAX_COIN_NORMAL```  for put a value for the coin pretty good 
+   - if you put 30 each case will have a value between (1 30) ect...
 ### setBomb()
   - there is another methods you can override if you want to use ```protected void setBomb(int numberOfBomb)```you just have to put in super.setBomb(and an int )
     i have made some constant who will make the work pretty good but you can put the int you want, 0 if you don't want bomb 

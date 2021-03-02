@@ -124,4 +124,10 @@ public class CapitalMap extends WindowInitializer{
 
         putEnemyRandom(2, Difficulty.FREE);
     }
+
+    @Override
+    protected void setCoin(int valueMaxOfACoins) {
+        super.setCoin(WindowInitializer.NUMBER_MAX_COIN_NORMAL);
+    }
+
 }

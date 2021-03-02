@@ -60,6 +60,7 @@ public class WindowInitializer extends JFrame {
     public static final int LOT_NOMBER_BOMB= 9;
     public static final int MEDIUM_NOMBER_BOMB= 15;
     public static final int LESS_NUMBER_BOMB= 23;
+    public static final int NUMBER_MAX_COIN_NORMAL = 20;
 
     public static final Font font = new Font("Fira sans", Font.PLAIN, 22);
 
@@ -307,6 +308,7 @@ public class WindowInitializer extends JFrame {
         setWall();
         setShop();
         setObject();
+        setCoin(0);
         setBomb(WindowInitializer.MEDIUM_NOMBER_BOMB);
         setInfoGame();
     }
@@ -321,6 +323,11 @@ public class WindowInitializer extends JFrame {
 
     /** put the objet on all the case*/
     protected void setObject(){}
+
+    /** put the coin at a randomly value everywhere */
+    protected void setCoin(int valueMaxOfACoins){
+        setCoinPrivate(valueMaxOfACoins);
+    }
 
     /** overide methods possibly*/
     protected void setBomb(int numberOfBomb){
@@ -345,6 +352,17 @@ public class WindowInitializer extends JFrame {
         }
     }
 
+    /** put the coin*/
+    private void setCoinPrivate(int valueMaxOfACoins){
+        if (valueMaxOfACoins == 0) return;
+        for (int i = 0; i < BOARD_DIM; i++) {
+            for (int j = 0; j < BOARD_DIM; j++) {
+                if ((!board[i][j].isWall()) && (i != player.getLine() || j != player.getCol())) {
+                    board[i][j].setObjectCase(new Coin((int) (Math.random() * valueMaxOfACoins)));
+                }
+            }
+        }
+    }
 
     /** put a pnj at the coord */
     protected void putPnj(Coord coord, Object objectPnj, ImageIcon pnjIcon){

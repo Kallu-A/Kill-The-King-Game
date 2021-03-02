@@ -26,7 +26,6 @@ public class RandomGenerator {
         for (int i=0; i<BOARD_DIM; i++){
             for (int j=0; j<BOARD_DIM; j++){
                 if ((!board[i][j].isWall()) && (i != player.getLine() || j != player.getCol() )){
-                    board[i][j].setObjectCase(new Coin((int) (Math.random() * 20) ) );
                     random = (int) (Math.random() * 108);
                     if (random <= 21 && window.getCaseFromCoord( new Coord(i,j)).isFree(player) ) {
                         window.putPnj(new Coord(i, j), new PnjSoldier(), window.soldierIcon);
@@ -59,7 +58,6 @@ public class RandomGenerator {
         for (int i=0; i<BOARD_DIM; i++){
             for (int j=0; j<BOARD_DIM; j++){
                 if ((!board[i][j].isWall()) && (i != player.getLine() || j != player.getCol() )){
-                    board[i][j].setObjectCase(new Coin((int) (Math.random() * 20) ) );
                     random = (int) (Math.random() * 108);
                     if (random <= 9 && window.getCaseFromCoord( new Coord(i,j)).isFree(player) ) {
                         window.putPnj(new Coord(i, j), new PnjSoldier(), window.soldierIcon);
@@ -90,7 +88,6 @@ public class RandomGenerator {
         for (int i=0; i<BOARD_DIM; i++){
             for (int j=0; j<BOARD_DIM; j++){
                 if ((!board[i][j].isWall()) && (i != player.getLine() || j != player.getCol() )){
-                    board[i][j].setObjectCase(new Coin((int) (Math.random() * 20) ) );
                     random = (int) (Math.random() * 108);
                     if (random <= 5 && window.getCaseFromCoord( new Coord(i,j)).isFree(player) ) {
                         window.putPnj(new Coord(i, j), new PnjSoldier(), window.soldierIcon);
@@ -114,6 +111,5 @@ public class RandomGenerator {
             }
         }
     }
-
 
 }

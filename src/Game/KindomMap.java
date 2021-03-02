@@ -175,7 +175,13 @@ public class KindomMap extends WindowInitializer{
     }
 
     @Override
+    protected void setCoin(int valueMaxOfACoins) {
+        super.setCoin(15);
+    }
+
+    @Override
     protected void setBomb(int numberOfBomb) {
         super.setBomb(WindowInitializer.LESS_NUMBER_BOMB);
     }
+
 }
