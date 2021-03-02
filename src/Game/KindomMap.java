@@ -13,7 +13,7 @@ public class KindomMap extends WindowInitializer{
     @Override
     protected void setDimBoard(int dimBoard) {
         super.setDimBoard(30);
-        playerIcon = new javax.swing.ImageIcon(getClass().getResource("icon?px/test.png"));
+        playerIcon = new javax.swing.ImageIcon(getClass().getResource("icon23px/player.png"));
     }
 
 

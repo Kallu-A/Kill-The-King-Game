@@ -42,7 +42,8 @@ public class WindowInitializer extends JFrame {
     protected ImageIcon groundIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/ground.png"));
     protected ImageIcon deadPlayerIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/playerDead.png"));
     protected ImageIcon shieldIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/shield.png"));
-    protected ImageIcon wallIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/wall.png"));
+    protected ImageIcon mountainIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/mountain.png"));
+    protected ImageIcon treeIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/tree.png"));
     protected ImageIcon shopIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/shop.png"));
     protected ImageIcon playerIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/player.png"));
     protected ImageIcon playerGetBombIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/playerGetBomb.png"));

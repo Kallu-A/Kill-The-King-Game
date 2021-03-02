@@ -30,26 +30,26 @@ public class CapitalMap extends WindowInitializer{
         player = new Player(this, new Coord(9,0));
 
         for (int i=0; i<BOARD_DIM; i++){
-            if (i <= 2 || i >= 17) board[i][0].setWall(wallIcon);
-            if (i <= 1 || i >= 18) board[i][1].setWall(wallIcon);
-            if (i == 0 || i == 19) board[i][2].setWall(wallIcon);
-            if (i == 3 || i == 11) board[i][3].setWall(wallIcon);
-            if (i == 3 || i == 17) board[i][4].setWall(wallIcon);
-            if (i == 6) board[i][6].setWall(wallIcon);
-            if (i == 16) board[i][7].setWall(wallIcon);
-            if (i > 5 && i < 9 || i > 10 && i < 14) board[i][8].setWall(wallIcon);
-            if (i == 5 || i == 6 || i == 14 || i == 13) board[i][9].setWall(wallIcon);
-            if (i == 5  || i == 14) board[i][10].setWall(wallIcon);
-            if (i <= 5 && i >= 3 || i >= 14 && i <=16) board[i][11].setWall(wallIcon);
-            if (i <= 3 && i >= 2 || i >= 16 && i <=17) board[i][12].setWall(wallIcon);
-            if (i ==  2 || i == 17 || i >= 6 && i <= 8 || i <= 13 && i >= 11) board[i][13].setWall(wallIcon);
-            if (i ==  2 || i == 17 || i == 5 || i == 6 || i == 14 || i ==  13) board[i][14].setWall(wallIcon);
-            if (i ==  2 || i == 17 || i == 5 || i == 14) board[i][15].setWall(wallIcon);
-            if (i <=  2 && i > 0|| i >= 17 && i < 19 || i == 5 || i == 14 || i == 7 || i == 12 || i == 8 || i == 11) board[i][16].setWall(wallIcon);
+            if (i <= 2 || i >= 17) board[i][0].setWall(mountainIcon);
+            if (i <= 1 || i >= 18) board[i][1].setWall(mountainIcon);
+            if (i == 0 || i == 19) board[i][2].setWall(mountainIcon);
+            if (i == 3 || i == 11) board[i][3].setWall(treeIcon);
+            if (i == 3 || i == 17) board[i][4].setWall(treeIcon);
+            if (i == 6) board[i][6].setWall(treeIcon);
+            if (i == 16) board[i][7].setWall(treeIcon);
+            if (i > 5 && i < 9 || i > 10 && i < 14) board[i][8].setWall(mountainIcon);
+            if (i == 5 || i == 6 || i == 14 || i == 13) board[i][9].setWall(mountainIcon);
+            if (i == 5  || i == 14) board[i][10].setWall(mountainIcon);
+            if (i <= 5 && i >= 3 || i >= 14 && i <=16) board[i][11].setWall(mountainIcon);
+            if (i <= 3 && i >= 2 || i >= 16 && i <=17) board[i][12].setWall(mountainIcon);
+            if (i ==  2 || i == 17 || i >= 6 && i <= 8 || i <= 13 && i >= 11) board[i][13].setWall(mountainIcon);
+            if (i ==  2 || i == 17 || i == 5 || i == 6 || i == 14 || i ==  13) board[i][14].setWall(mountainIcon);
+            if (i ==  2 || i == 17 || i == 5 || i == 14) board[i][15].setWall(mountainIcon);
+            if (i <=  2 && i > 0|| i >= 17 && i < 19 || i == 5 || i == 14 || i == 7 || i == 12 || i == 8 || i == 11) board[i][16].setWall(mountainIcon);
             final boolean b = i <= 1 || i >= 18 || i == 5 || i == 14 || i == 7 || i == 12;
-            if (b) board[i][17].setWall(wallIcon);
-            if (b) board[i][18].setWall(wallIcon);
-            if (b) board[i][19].setWall(wallIcon);
+            if (b) board[i][17].setWall(mountainIcon);
+            if (b) board[i][18].setWall(mountainIcon);
+            if (b) board[i][19].setWall(mountainIcon);
         }
     }
 

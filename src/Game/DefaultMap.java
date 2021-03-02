@@ -28,26 +28,26 @@ public class DefaultMap extends WindowInitializer {
 
         //wall
         for (int i=0; i<BOARD_DIM; i++){
-            if (i < 4 || i > 14) board[i][0].setWall(wallIcon);
-            if (i < 5 || i > 13) board[i][1].setWall(wallIcon);
-            if (i < 6 && i > 2 || i > 12 && i < 16 || i > 17) board[i][2].setWall(wallIcon);
-            if (i < 7 && i > 3 || i > 10 && i < 14) board[i][3].setWall(wallIcon);
-            if (i == 6 || i == 11) board[i][4].setWall(wallIcon);
-            if (i == 6 || i == 11) board[i][5].setWall(wallIcon);
-            if (i == 6 || i > 10 && i < 14) board[i][6].setWall(wallIcon);
-            if (i > 12 && i < 18) board[i][7].setWall(wallIcon);
-            if (i > 13 && i < 17) board[i][8].setWall(wallIcon);
-            if (i == 11 || i < 7) board[i][9].setWall(wallIcon);
-            if (i == 11 || i < 7) board[i][10].setWall(wallIcon);
-            if (i == 11) board[i][11].setWall(wallIcon);
-            if (i == 11) board[i][12].setWall(wallIcon);
-            if (i > 4 && i < 12 || i == 19) board[i][13].setWall(wallIcon);
-            if (i >17 || i > 10 && i < 13 || i == 5) board[i][14].setWall(wallIcon);
-            if (i >16 || i > 3 && i < 6 || i == 12) board[i][15].setWall(wallIcon);
-            if (i >16 || i == 4 || i == 12) board[i][16].setWall(wallIcon);
-            if (i >16 || i > 11 && i< 14) board[i][17].setWall(wallIcon);
-            if (i >17 || i == 13 || i == 2) board[i][18].setWall(wallIcon);
-            if (i >17 || i == 13 || i == 2) board[i][19].setWall(wallIcon);
+            if (i < 4 || i > 14) board[i][0].setWall(mountainIcon);
+            if (i < 5 || i > 13) board[i][1].setWall(mountainIcon);
+            if (i < 6 && i > 2 || i > 12 && i < 16 || i > 17) board[i][2].setWall(mountainIcon);
+            if (i < 7 && i > 3 || i > 10 && i < 14) board[i][3].setWall(mountainIcon);
+            if (i == 6 || i == 11) board[i][4].setWall(mountainIcon);
+            if (i == 6 || i == 11) board[i][5].setWall(mountainIcon);
+            if (i == 6 || i > 10 && i < 14) board[i][6].setWall(mountainIcon);
+            if (i > 12 && i < 18) board[i][7].setWall(mountainIcon);
+            if (i > 13 && i < 17) board[i][8].setWall(mountainIcon);
+            if (i == 11 || i < 7) board[i][9].setWall(mountainIcon);
+            if (i == 11 || i < 7) board[i][10].setWall(mountainIcon);
+            if (i == 11) board[i][11].setWall(mountainIcon);
+            if (i == 11) board[i][12].setWall(mountainIcon);
+            if (i > 4 && i < 12 || i == 19) board[i][13].setWall(mountainIcon);
+            if (i >17 || i > 10 && i < 13 || i == 5) board[i][14].setWall(mountainIcon);
+            if (i >16 || i > 3 && i < 6 || i == 12) board[i][15].setWall(mountainIcon);
+            if (i >16 || i == 4 || i == 12) board[i][16].setWall(mountainIcon);
+            if (i >16 || i > 11 && i< 14) board[i][17].setWall(mountainIcon);
+            if (i >17 || i == 13 || i == 2) board[i][18].setWall(mountainIcon);
+            if (i >17 || i == 13 || i == 2) board[i][19].setWall(mountainIcon);
         }
     }
 
