@@ -1,6 +1,7 @@
 package Game;
 
 import Game.util.D2Dim.Coord;
+import Game.util.Difficulty;
 import Game.util.Object.PnjMerchand;
 import Game.util.Object.buy.Potion;
 import Game.util.Object.buy.ShieldBuy;
@@ -44,7 +45,7 @@ public class KindomMap extends WindowInitializer{
         for (int i=0; i<BOARD_DIM; i++) {
             if (  i == 21 || i == 7) board[i][0].setWall(mountainIcon);
             if (  i == 21 || i == 7) board[i][1].setWall(mountainIcon);
-            if ( i == 20 || i == 8 ||  i == 21 || i == 7) board[i][2].setWall(mountainIcon);
+            if (i <= 21 && i >= 7 && i != 14) board[i][2].setWall(mountainIcon);
             if ( i == 20 || i == 8) board[i][3].setWall(mountainIcon);
             if ( i == 19 || i == 9 ||  i == 20 || i == 8) board[i][4].setWall(mountainIcon);
             if ( i == 19 || i == 9) board[i][5].setWall(mountainIcon);
@@ -89,7 +90,7 @@ public class KindomMap extends WindowInitializer{
         PnjMerchand pnj7 = new PnjMerchand();
         PnjMerchand pnj8 = new PnjMerchand();
 
-        pnj1.addItemToSell(new Sword());
+        pnj1.addItemToSell(new Spear());
         addPotion(pnj1);
 
         pnj2.addItemToSell(new ShieldBuy());
@@ -151,7 +152,7 @@ public class KindomMap extends WindowInitializer{
     protected void setObject() {
         super.setObject();
 
-        player.current = new KingSword();
+        player.addItemInventory(new Sword());
 
         putPnj(new Coord(11, 11), new PnjSoldier(), soldierIcon);
         putPnj(new Coord(11, 17), new PnjKnight(), knightIcon);
@@ -162,7 +163,17 @@ public class KindomMap extends WindowInitializer{
         putPnj(new Coord(14, 18), new PnjDragon(), dragonIcon);
         putPnj(new Coord(10, 14), new PnjCastle(), castleIcon);
         putPnj(new Coord(18, 14), new PnjCastle(), castleIcon);
+        putPnj(new Coord(14, 22), new PnjCastle(), castleIcon);
+        putPnj(new Coord(14, 2), new PnjDragon(), dragonIcon);
+        putPnj(new Coord(14, 6), new PnjDragon(), dragonIcon);
 
         putPnj(new Coord(14, 0), new PnjKing(), kingIcon);
+
+        putEnemyRandom(1, Difficulty.FREE);
+    }
+
+    @Override
+    protected void setBomb(int numberOfBomb) {
+        super.setBomb(WindowInitializer.LESS_NUMBER_BOMB);
     }
 }

@@ -57,6 +57,10 @@ public class WindowInitializer extends JFrame {
 
     private static boolean firstLaunch = true;
 
+    public static final int LOT_NOMBER_BOMB= 9;
+    public static final int MEDIUM_NOMBER_BOMB= 15;
+    public static final int LESS_NUMBER_BOMB= 23;
+
     public static final Font font = new Font("Fira sans", Font.PLAIN, 22);
 
     public WindowInitializer() throws HeadlessException {
@@ -343,13 +347,14 @@ public class WindowInitializer extends JFrame {
     }
 
     /** put the bomb */
-    private void setBomb(){
+    private void setBombPrivate(int numberOfBomb){
+        if (numberOfBomb == 0) return;
         int bombe;
         for (int i = 0; i < BOARD_DIM; i++){
             for (int j = 0; j < BOARD_DIM; j++){
                 if (!board[i][j].isWall()){
-                    bombe = (int) (Math.random() * 16);
-                    if (bombe <= 1 && board[i][j].isFree(player)) {
+                    bombe = (int) (Math.random() * numberOfBomb);
+                    if (bombe == 1 && board[i][j].isFree(player)) {
                         board[i][j].setObjectCase(new Bomb());
                     }
                 }
@@ -362,7 +367,7 @@ public class WindowInitializer extends JFrame {
         setWall();
         setShop();
         setObject();
-        setBomb();
+        setBomb(WindowInitializer.MEDIUM_NOMBER_BOMB);
         setInfoGame();
     }
 
@@ -376,6 +381,11 @@ public class WindowInitializer extends JFrame {
 
     /** put the objet on all the case*/
     protected void setObject(){}
+
+    /** overide methods possibly*/
+    protected void setBomb(int numberOfBomb){
+        setBombPrivate(numberOfBomb);
+    }
 
     // ------ end override ------
 

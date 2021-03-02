@@ -56,15 +56,20 @@
 - you just only need ```putPnj(new Coord(x, y), new PnjKnight(), knight);``` 
   here in the new you can put every mob of the package enemy, and after is the icon 
 I advise you to use the same for all the same type of enemy
+
+- **warning** for put a shield you have to do : ```board[x][y].putShield(shieldIcon);```
 - if you want random enemy you have the methods ```putEnemyRandom()``` who in all the board put enemy randomly
   #### putEnemyRandom()
   - so first is an int who will select the number max of shield on the map who can randomly be put if it's 2 there is
     max 2 shield
   - second is a enum of Dificulty   if you put Dificulty.FREE the player can choose the difficulty or you can choose for him
     by put Difficulty.MEDIUM or Difficulty.EASY or Difficulty.HARD
+### setBomb()
+  - there is another methods you can override if you want to use you just have to put in super.setBomb(and an int )
+    i have made some constant who will make the work pretty good but you can put the int you want, 0 if you don't want bomb 
+    the int is 1/i will be a bomb
     
-- **warning** for put a shield you have to do : ```board[x][y].putShield(shieldIcon);```
-I hope you like this program if you have advice for upgrade it or make the create map easier tell me
+- **I hope you like this program if you have advice for upgrade it or make the create map easier tell me**
   
 
 *if you create a good map send me and I put it in the code*
