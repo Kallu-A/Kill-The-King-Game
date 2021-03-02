@@ -2,7 +2,6 @@ package Game.util.Object.enemy;
 
 import Game.util.Object.Object;
 import Game.util.Object.item.Item;
-import Game.util.Player.Health;
 import Game.util.Player.Player;
 
 /** Is a hostile pnj*/

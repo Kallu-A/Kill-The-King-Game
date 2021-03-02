@@ -2,6 +2,8 @@ package Game;
 
 import Game.util.Case;
 import Game.util.D2Dim.Coord;
+import Game.util.Difficulty;
+import Game.util.DifficultySelector;
 import Game.util.Object.*;
 import Game.util.Object.Object;
 import Game.util.Object.enemy.PnjGorila;
@@ -53,6 +55,7 @@ public class WindowInitializer extends JFrame {
     protected final ImageIcon castle = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/enemy/castle.png"));
     protected final ImageIcon dragon = new javax.swing.ImageIcon(this.getClass().getResource("util/Object/enemy/dragon.png"));
 
+    private static boolean firstLaunch = true;
 
     public static final Font font = new Font("Fira sans", Font.PLAIN, 22);
 
@@ -69,7 +72,6 @@ public class WindowInitializer extends JFrame {
         initToolBar();
         setUpBoard();
 
-
         grid.setFocusable(true);
         grid.requestFocus();
         grid.setBackground(Color.decode("#b98b5e"));
@@ -82,15 +84,19 @@ public class WindowInitializer extends JFrame {
         });
 
         setVisible(true);
-        JOptionPane.showMessageDialog(this, "Press R for the commands " +
-                "\n To fight an enemy you have to go on his postion " +
-                "\n Objective to kill the king" +
-                "\n ESCAPE for relaunch a new game" +
-                "\n---------------------------------------------------" +
-                "\n [Tips] Don't fight with your hand " +
-                "\n [Tips] Remember to scan your enemy before facing it " +
-                "\n [Tips] Don't underestimate the armor " +
-                "\n [Tips] Going to a place for the first time earns you coins","Start", JOptionPane.INFORMATION_MESSAGE);
+        if (firstLaunch){
+            JOptionPane.showMessageDialog(this, "Press R for the commands " +
+                    "\n To fight an enemy you have to go on his postion " +
+                    "\n Objective to kill the king" +
+                    "\n ESCAPE for relaunch a new game" +
+                    "\n---------------------------------------------------" +
+                    "\n [Tips] Don't fight with your hand " +
+                    "\n [Tips] Remember to scan your enemy before facing it " +
+                    "\n [Tips] Don't underestimate the armor " +
+                    "\n [Tips] Going to a place for the first time earns you coins","Start", JOptionPane.INFORMATION_MESSAGE);
+            firstLaunch = false;
+        }
+
         System.gc();
     }
 
@@ -113,18 +119,16 @@ public class WindowInitializer extends JFrame {
         contentPane.add(grid, BorderLayout.CENTER);
     }
 
-
     /** do the right action in case of the key */
     private void keyAction(KeyEvent e){
         if (player.health.life == 0){
-            getCaseFromCoord(player.getCoord()).setIcon(deathPlayer);
             if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                 player.health.life = 10;
-                player.health.stillAlive = true;
                 hasCheat = true;
                 getCaseFromCoord(player.getCoord()).setIcon(playerAlive);
                 setInfoGame();
             } else if ( e.getKeyCode() == KeyEvent.VK_ESCAPE) relance();
+            else if (e.getKeyCode() == KeyEvent.VK_R) showCommand();
             return;
         }
         switch (e.getKeyCode()){
@@ -133,8 +137,7 @@ public class WindowInitializer extends JFrame {
                 move =new Coord(player.getLine()-1, player.getCol());
                 if (WindowInitializer.isBoard(move)) {
                     getCaseFromCoord(move).interactWithEnnemy(this);
-                    player.setCoord(move);
-                    setInfoGame();
+                    doAction(move);
                 }
                 break;
 
@@ -142,8 +145,7 @@ public class WindowInitializer extends JFrame {
                 move =new Coord(player.getLine(), player.getCol()+1);
                 if (WindowInitializer.isBoard(move)) {
                     getCaseFromCoord(move).interactWithEnnemy(this);
-                    player.setCoord(move);
-                    setInfoGame();
+                    doAction(move);
                 }
                 break;
 
@@ -151,8 +153,7 @@ public class WindowInitializer extends JFrame {
                 move = new Coord(player.getLine(), player.getCol()-1);
                 if (WindowInitializer.isBoard(move)) {
                     getCaseFromCoord(move).interactWithEnnemy(this);
-                    player.setCoord(move);
-                    setInfoGame();
+                    doAction(move);
                 }
                 break;
 
@@ -160,8 +161,7 @@ public class WindowInitializer extends JFrame {
                 move = new Coord(player.getLine()+1, player.getCol());
                 if (WindowInitializer.isBoard(move)) {
                     getCaseFromCoord(move).interactWithEnnemy(this);
-                    player.setCoord(move);
-                    setInfoGame();
+                    doAction(move);
                 }
                 break;
 
@@ -196,7 +196,6 @@ public class WindowInitializer extends JFrame {
         }
     }
 
-
     /** détruit le jeu pour la relance */
     private void relance(){
         int optionSelect = JOptionPane.showConfirmDialog(this, "Do you want to launch a new game?");
@@ -204,6 +203,22 @@ public class WindowInitializer extends JFrame {
         if (optionSelect == 0) {
             dispose();
             new MapSelector();
+        }
+    }
+
+    /** do the action when you move*/
+    private void doAction(Coord move){
+        player.setCoord(move);
+        setInfoGame();
+        playerDead(player.getCoord());
+    }
+
+    /**if there is a player at the coord and is die make him die*/
+    private void playerDead(Coord coordPlayer){
+        if ( !coordPlayer.isCoordEqual(player.getCoord()))  return;
+        if (player.health.life <= Health.MINIMUN_LIFE){
+            getCaseFromCoord(player.getCoord()).setIcon(deathPlayer);
+            setPlayerDeadHealth();
         }
     }
 
@@ -256,6 +271,13 @@ public class WindowInitializer extends JFrame {
                 "</body> </html>");
     }
 
+    /** set the dead message */
+    private void setPlayerDeadHealth(){
+        healthBar.setText("<html> <body> <font color='df4a38'>" +
+                "YOUR DEAD"+
+                "</body> </html>");
+    }
+
     /** set the shield info*/
     private void setShieldBar(){
         shieldBar.setText("<html> <body> <font color='5dd8e5'>" +
@@ -272,7 +294,13 @@ public class WindowInitializer extends JFrame {
 
     /** show all the commands*/
     public void showCommand(){
-        JOptionPane.showMessageDialog(this, "Arrows: to move \n" +
+        if (player.health.life <= Health.MINIMUN_LIFE){
+            JOptionPane.showMessageDialog(this,
+                    "R: show commands\n" +
+                            "SPACE : you can cheat and revive \n" +
+                            "ESCAPE: relaunch a new game", "Commands when dead", JOptionPane.INFORMATION_MESSAGE);
+        } else
+            JOptionPane.showMessageDialog(this, "Arrows: to move \n" +
                 "A: open the store next door for buying \n" +
                 "Q: open the store next door  for selling \n" +
                 "E: open the inventory and allows you to change the current weapon \n" +
@@ -324,6 +352,7 @@ public class WindowInitializer extends JFrame {
     /** put the objet on all the case*/
     protected void setObject(){}
 
+    // ------ end override ------
 
     /** put a pnj at the coord */
     protected void putPnj(Coord coord, Object objectPnj, ImageIcon pnjIcon){
@@ -364,33 +393,29 @@ public class WindowInitializer extends JFrame {
         if (!ennemyScan) JOptionPane.showMessageDialog(this, "there is no enemy in the vicinity", "no enemy", JOptionPane.INFORMATION_MESSAGE);
     }
 
-
     /** put the enemy randomly in the map with a maxShield number*/
-    protected void putEnemyRandom(int maxShield){
-        int random;
-        int shield = 0;
-        for (int i=0; i<BOARD_DIM; i++){
-            for (int j=0; j<BOARD_DIM; j++){
-                if ((!board[i][j].isWall()) && (i != player.getLine() || j != player.getCol() )){
-                    board[i][j].setObjectCase(new Coin((int) (Math.random() * 20) ) );
-                    random = (int) (Math.random() * 108);
-                    if (random <= 9 && getCaseFromCoord( new Coord(i,j)).isFree(player) ) {
-                        putPnj(new Coord(i, j), new PnjSoldier(), soldier);
-                    }
-                    else if (random == 11 || random == 12 && getCaseFromCoord( new Coord(i,j)).isFree(player) ){
-                        putPnj(new Coord(i, j), new PnjGorila(), gorila);
-                    }
-                    else if (maxShield > shield && getCaseFromCoord( new Coord(i,j)).isFree(player) ){
-                        if (random ==  13 || random == 14 ) {
-                            board[i][j].putShield(shieldIcon);
-                            shield++;
-                        }
-                    }
-                }
-            }
+    protected void putEnemyRandom(int maxShield, Difficulty difficultySelect){
+        if (difficultySelect == Difficulty.FREE) difficultySelect = DifficultySelector.getDifficulty();
+        if ( difficultySelect == null) difficultySelect = Difficulty.MEDIUM;
+        switch (difficultySelect){
+
+            case EASY:
+                RandomGenerator.difficultyEasy(this, maxShield);
+                break;
+
+            case MEDIUM:
+                RandomGenerator.difficultyMedium(this, maxShield);
+                break;
+
+            case HARD:
+                RandomGenerator.difficultyHard(this, maxShield);
+                break;
+
+            default:break;
         }
     }
 
+    /** get the player of the game */
     public Player getPlayer() {
         return player;
     }

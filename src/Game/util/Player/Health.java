@@ -9,8 +9,6 @@ public class Health {
 
     public static final int MAXIMUN_LIFE = 100;
     public static final int MINIMUN_LIFE = 0;
-    
-    public boolean stillAlive = true;
 
     public Health() {
         this.shield = 1.0;
@@ -20,9 +18,8 @@ public class Health {
 
     /** add to the life the current change*/
     public void setLife(int change){
-        if (!stillAlive) return;
+        if (life == MINIMUN_LIFE) return;
         normLife(change);
-        if (life == 0) stillAlive = false;
     }
 
     /** norm life for 0<= life <= 100*/
@@ -30,7 +27,7 @@ public class Health {
         if ( life + change > MAXIMUN_LIFE) life = 100;
         else if ( life + change * shield < MINIMUN_LIFE) life = 0;
         else {
-            if (change >= 0) life += change;
+            if (change >= MINIMUN_LIFE) life += change;
             else life += change * shield;
         }
     }

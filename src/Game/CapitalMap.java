@@ -1,6 +1,7 @@
 package Game;
 
 import Game.util.D2Dim.Coord;
+import Game.util.Difficulty;
 import Game.util.Object.PnjMerchand;
 import Game.util.Object.Shield;
 import Game.util.Object.buy.Potion;
@@ -121,6 +122,6 @@ public class CapitalMap extends WindowInitializer{
         putPnj(new Coord(10, 19), new PnjDragon(), dragon);
 
 
-        putEnemyRandom(2);
+        putEnemyRandom(2, Difficulty.FREE);
     }
 }

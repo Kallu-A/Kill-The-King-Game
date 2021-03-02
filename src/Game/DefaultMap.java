@@ -1,6 +1,7 @@
 package Game;
 
 import Game.util.D2Dim.Coord;
+import Game.util.Difficulty;
 import Game.util.Object.Coin;
 import Game.util.Object.PnjMerchand;
 import Game.util.Object.Shield;
@@ -138,7 +139,7 @@ public class DefaultMap extends WindowInitializer {
 
         board[8][7].putShield(shieldIcon);
 
-        putEnemyRandom(2);
+        putEnemyRandom(2, Difficulty.MEDIUM);
 
     }
 
