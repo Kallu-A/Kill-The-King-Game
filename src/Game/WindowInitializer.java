@@ -40,7 +40,7 @@ public class WindowInitializer extends JFrame {
 
     protected ImageIcon bombIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/bomb.png"));
     protected ImageIcon groundIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/ground.png"));
-    protected ImageIcon deadPlayerIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/playerDead.png"));
+    protected ImageIcon playerDeadIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/playerDead.png"));
     protected ImageIcon shieldIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/shield.png"));
     protected ImageIcon mountainIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/mountain.png"));
     protected ImageIcon treeIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/tree.png"));
@@ -85,10 +85,10 @@ public class WindowInitializer extends JFrame {
 
         setVisible(true);
         if (firstLaunch){
-            JOptionPane.showMessageDialog(this, "Press R for the commands " +
+            JOptionPane.showMessageDialog(this, "Press Q for the commands " +
                     "\n To fight an enemy you have to go on his postion " +
                     "\n Objective to kill the king" +
-                    "\n ESCAPE for relaunch a new game" +
+                    "\n L for launch a new game" +
                     "\n---------------------------------------------------" +
                     "\n [Tips] Don't fight with your hand " +
                     "\n [Tips] Remember to scan your enemy before facing it " +
@@ -108,6 +108,16 @@ public class WindowInitializer extends JFrame {
     /** return if the Coord is in the board*/
     public boolean isBoard(Coord coord){
         return ( (coord.line >= 0 && coord.line < BOARD_DIM) && (coord.col >= 0 && coord.col < BOARD_DIM) );
+    }
+
+    /** close the game */
+    private void closeWindow(){
+        int optionSelect = JOptionPane.showConfirmDialog(this, "Do you want to leave ?");
+
+        if (optionSelect == 0) {
+            dispose();
+            System.exit(0);
+        }
     }
 
     /** make the grid*/
@@ -134,14 +144,15 @@ public class WindowInitializer extends JFrame {
 
     /** do the right action in case of the key */
     private void keyAction(KeyEvent e){
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) closeWindow();
         if (player.health.life == 0){
             if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                 player.health.life = 10;
                 hasCheat = true;
                 getCaseFromCoord(player.getCoord()).setIcon(playerIcon);
                 setInfoGame();
-            } else if ( e.getKeyCode() == KeyEvent.VK_ESCAPE) relance();
-            else if (e.getKeyCode() == KeyEvent.VK_R) showCommand();
+            } else if ( e.getKeyCode() == KeyEvent.VK_L) relance();
+            else if (e.getKeyCode() == KeyEvent.VK_Q) showCommand();
             return;
         }
         switch (e.getKeyCode()){
@@ -183,7 +194,7 @@ public class WindowInitializer extends JFrame {
                 setInfoGame();
                 break;
 
-            case KeyEvent.VK_Q:
+            case KeyEvent.VK_R:
                 interactWithPnj(false);
                 setInfoGame();
                 break;
@@ -197,11 +208,11 @@ public class WindowInitializer extends JFrame {
                 scanEnnemies();
                 break;
 
-            case KeyEvent.VK_R:
+            case KeyEvent.VK_Q:
                 showCommand();
                 break;
 
-            case KeyEvent.VK_ESCAPE:
+            case KeyEvent.VK_L:
                 relance();
                 break;
 
@@ -230,7 +241,7 @@ public class WindowInitializer extends JFrame {
     private void playerDead(Coord coordPlayer){
         if ( !coordPlayer.isCoordEqual(player.getCoord()))  return;
         if (player.health.life <= Health.MINIMUN_LIFE){
-            getCaseFromCoord(player.getCoord()).setIcon(deadPlayerIcon);
+            getCaseFromCoord(player.getCoord()).setIcon(playerDeadIcon);
             setPlayerDeadHealth();
         }
     }
@@ -309,18 +320,19 @@ public class WindowInitializer extends JFrame {
     public void showCommand(){
         if (player.health.life <= Health.MINIMUN_LIFE){
             JOptionPane.showMessageDialog(this,
-                    "R: show commands\n" +
+                    "Q: show commands\n" +
                             "SPACE : you can cheat and revive \n" +
-                            "ESCAPE: relaunch a new game", "Commands when dead", JOptionPane.INFORMATION_MESSAGE);
+                            "L: launch a new game", "Commands when dead", JOptionPane.INFORMATION_MESSAGE);
         } else
             JOptionPane.showMessageDialog(this, "Arrows: to move \n" +
                 "A: open the store next door for buying \n" +
-                "Q: open the store next door  for selling \n" +
+                "R: open the store next door  for selling \n" +
                 "E: open the inventory and allows you to change the current weapon \n" +
                 "Z: scan the surrounding enemies\n" +
-                "R: show commands\n" +
+                "Q: show commands\n" +
                 "SPACE : if you're dead you still can cheat and revive \n" +
-                "ESCAPE: relaunch a new game","Commands", JOptionPane.INFORMATION_MESSAGE);
+                "ESCAPE :  close the game\n" +
+                "L: launch a new game","Commands", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /** get the btnObject from coord */

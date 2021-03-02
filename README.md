@@ -11,9 +11,9 @@ A little game of mine
 - Warning when you buy a weapon she is not the current item but you can change it with **E**
 ## All the commands :
 - **A: open the store if there is shop in the nearby 1 case all around you for buying**
-- **Q: open the store if there is shop in the nearby 1 case all around you for selling you'r item**
+- **R: open the store if there is shop in the nearby 1 case all around you for selling you'r item**
 - **E: open the inventory and you can change the current item**
 - **Z: scan the nearby enemy 1 case all around you**
-- **R: show all the commands of the game in the game**
+- **Q: show all the commands of the game in the game**
 - **SPACE : revive you if you're dead but it's a cheat**
-- **ESCAPE : launch a new game**
+- **L : launch a new game**
