@@ -8,6 +8,7 @@ public class Potion extends ObjectBuy {
 
     public Potion(int value) {
         super(value*10);
+        if (value > 100) value = 100;
         this.value = value;
     }
 

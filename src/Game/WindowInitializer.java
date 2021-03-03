@@ -27,16 +27,16 @@ public class WindowInitializer extends JFrame {
     public boolean hasCheat = false;
 
     protected int BOARD_DIM = 20;
-    protected JPanel contentPane;
+    private final JPanel contentPane;
     protected Case[][] board;
-    protected JPanel grid;
+    private JPanel grid;
     protected Player player;
-    protected JToolBar toolBar;
-    protected JLabel accountMoney;
-    protected JLabel healthBar;
-    protected JLabel shieldBar;
+    private JToolBar toolBar;
+    private JLabel accountMoney;
+    private JLabel healthBar;
+    private JLabel shieldBar;
     protected JLabel currentItem;
-    protected Coord move = new Coord(0, 0);
+    private Coord move = new Coord(0, 0);
 
     protected ImageIcon bombIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/bomb.png"));
     protected ImageIcon groundIcon = new javax.swing.ImageIcon(this.getClass().getResource("icon35px/ground.png"));
@@ -57,8 +57,8 @@ public class WindowInitializer extends JFrame {
 
     private static boolean firstLaunch = true;
 
-    public static final int LOT_NOMBER_BOMB= 9;
-    public static final int MEDIUM_NOMBER_BOMB= 15;
+    public static final int LOT_NUMBER_BOMB= 9;
+    public static final int MEDIUM_NUMBER_BOMB= 15;
     public static final int LESS_NUMBER_BOMB= 23;
     public static final int NUMBER_MAX_COIN_NORMAL = 20;
 
@@ -309,7 +309,7 @@ public class WindowInitializer extends JFrame {
         setShop();
         setObject();
         setCoin(0);
-        setBomb(WindowInitializer.MEDIUM_NOMBER_BOMB);
+        setBomb(WindowInitializer.MEDIUM_NUMBER_BOMB);
         setInfoGame();
     }
 
